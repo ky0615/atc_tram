@@ -1,0 +1,1 @@
+angular.module("application").controller("MainController", ["$rootScope", "$scope", "$mdSidenav", "$state", "$urlRouter", "$location", function($rootScope, $scope, $mdSidenav, $state, $urlRouter, $location) {}]);
