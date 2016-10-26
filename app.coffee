@@ -41,3 +41,11 @@ io.on "connection", (socket)->
 
 server.listen app.get("port"), ->
   console.log "Server listening on pot " + server.address().port
+
+
+serial = new (require "./Serial")()
+# serial.hello()
+
+obstruction = new (require "./Obstruction")()
+console.log obstruction.list
+console.log JSON.stringify obstruction.staff, null, 2
