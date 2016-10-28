@@ -1,4 +1,6 @@
 SerialPort = require "serialport"
+config = require "config"
+
 module.exports = class Serial
   closeFlag: false
   openFlag: false
@@ -12,7 +14,7 @@ module.exports = class Serial
   callBack: null
 
   connect: (cb)=>
-    @port = new SerialPort "/dev/cu.usbserial-DJ00LWSM",
+    @port = new SerialPort config.serial_port,
       baudRate: 9600
       parser: SerialPort.parsers.readline("\n")
 
