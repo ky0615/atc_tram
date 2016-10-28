@@ -46,20 +46,20 @@ server.listen app.get("port"), ->
 
 serial = new (require "./Serial")()
 
-serial.connect (err)->
-  _.range 0, 11
-  .forEach ->
-    _.range 0, 256
-      .forEach (duty)->
-        param = "p000" + Math.floor(duty/100) + "" + Math.floor((duty/10)%10) + "" + (duty%10)
-        serial.writeSync param, (data, buff)->
-          console.log buff, ":", data
+#serial.connect (err)->
+#  _.range 0, 11
+#  .forEach ->
+#    _.range 0, 256
+#      .forEach (duty)->
+#        param = "p000" + Math.floor(duty/100) + "" + Math.floor((duty/10)%10) + "" + (duty%10)
+#        serial.writeSync param, (data, buff)->
+#          console.log buff, ":", data
 
 obstruction = new (require "./Obstruction")()
+#console.log obstruction.getObstructionListParam "23"
+console.log obstruction.parseObstructionList "d0001011000000000"
 #console.log obstruction.findStaff "yard_to_s2"
 #obstruction.setStaffSection()
 #console.log JSON.stringify obstruction.staff, null, 2
 #console.log JSON.stringify obstruction.staff, null, 2
 
-
-console.log Promise

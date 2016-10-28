@@ -326,3 +326,32 @@ module.exports = class Obstruction
       console.error "section name is not defined"
       return sectionName
     return @list[sectionName]
+
+  # 閉塞区間にpwmを指定するとき
+  getSectionParam: (boardNum, boardCh, pwmCh, direction)->
+    return "s" + Math.floor(boardNum / 10) + (boardNum % 10) + boardCh + pwmCh + direction
+
+  # 在線確認、異常事態(ポリスイッチの状態)確認
+  getObstructionListParam: (boardNum)=>
+    return @getSectionParam boardNum, 8, 0, "00"
+
+  # ポイント操作
+  getPointParam: (boardNum, boardCh, direction)->
+    return "i00" + Math.floor(boardNum / 10) + (boardNum % 10) + boardCh + direction
+
+  # pwmの制御
+  getPwmParam: (boardNum, boardCh, pwm)->
+    return "p0" + boardNum + boardCh + Math.floor(duty / 100) + Math.floor((duty / 10) % 10) + (duty % 10)
+
+  # 在線確認の返り値のパース
+  parseObstructionList: (param)->
+    param = param.substr(1, param.length)
+    _.range 0, 8
+    .map (val)-> val * 2
+    .map (val)->
+      section: param.substr(val, 1)
+      pSwitch: param.substr(val+1, 1)
+
+
+
+
